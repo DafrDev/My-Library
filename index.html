@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Library</title>
+  </head>
+  <body>
+    <div class="siderBar-container">
+      <img src="#" alt="Logo" />
+      <h1>My Library</h1>
+
+      <form action="">
+        <input type="text" name="name" id="bookName" placeholder="Name" />
+        <label for="bookName"></label>
+
+        <input type="text" name="author" id="bookAuthor" placeholder="Author" />
+        <label for="bookAuthor"></label>
+
+        <input type="number" name="pages" id="bookPages" placeholder="Pages" />
+        <label for="bookPages"></label>
+
+        <input type="checkbox" name="read" id="bookRead" />
+        <label for="bookRead">Already read ?</label>
+
+        <button type="submit">Add Book</button>
+      </form>
+    </div>
+    <div class="header-container">
+      <form>
+        <p>sort by:</p>
+        <input type="radio" name="orderBy" id="orderAZ" value="A-Z" checked />
+        <label for="orderAZ"> A-Z </label>
+        <input type="radio" name="orderBy" id="orderAuthor" value="Author" />
+        <label for="orderAuthor"> Author </label>
+        <input type="radio" name="orderBy" id="orderPages" value="Pages" />
+        <label for="orderPages"> Pages </label>
+        <input
+          type="checkbox"
+          name="orderRead"
+          id="orderRead"
+          value="Read"
+          checked
+        />
+        <label for="orderRead"> Read / not Read </label>
+      </form>
+    </div>
+    <div class="main-container"></div>
+  </body>
+</html>
