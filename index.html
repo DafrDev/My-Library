@@ -4,12 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
     <title>My Library</title>
   </head>
   <body>
-    <div class="siderBar-container">
-      <img src="#" alt="Logo" />
-      <h1>My Library</h1>
+    <div class="sideBar-container">
+      <div class="logo">
+        <img src="./icons/books-svgrepo-com.svg" alt="Logo" />
+        <h1>My Library</h1>
+      </div>
 
       <form action="">
         <input type="text" name="name" id="bookName" placeholder="Name" />
@@ -21,31 +25,66 @@
         <input type="number" name="pages" id="bookPages" placeholder="Pages" />
         <label for="bookPages"></label>
 
-        <input type="checkbox" name="read" id="bookRead" />
-        <label for="bookRead">Already read ?</label>
+        <div class="readingCheckbox">
+          <input type="checkbox" name="read" id="bookRead" />
+          <label for="bookRead">Finished reading it ?</label>
+        </div>
 
         <button type="submit">Add Book</button>
       </form>
     </div>
     <div class="header-container">
       <form>
-        <p>sort by:</p>
-        <input type="radio" name="orderBy" id="orderAZ" value="A-Z" checked />
-        <label for="orderAZ"> A-Z </label>
-        <input type="radio" name="orderBy" id="orderAuthor" value="Author" />
-        <label for="orderAuthor"> Author </label>
-        <input type="radio" name="orderBy" id="orderPages" value="Pages" />
-        <label for="orderPages"> Pages </label>
-        <input
-          type="checkbox"
-          name="orderRead"
-          id="orderRead"
-          value="Read"
-          checked
-        />
-        <label for="orderRead"> Read / not Read </label>
+        <p>sort by :</p>
+
+        <label>
+          <input type="radio" name="orderBy" id="orderAZ" value="A-Z" checked />
+          A-Z
+        </label>
+
+        <label>
+          <input type="radio" name="orderBy" id="orderAuthor" value="Author" />
+          Author
+        </label>
+
+        <label>
+          <input type="radio" name="orderBy" id="orderPages" value="Pages" />
+          Pages
+        </label>
+
+        <label>
+          <input
+            type="checkbox"
+            name="orderRead"
+            id="orderRead"
+            value="Read"
+            checked
+          />
+          Read / not Read
+        </label>
       </form>
     </div>
-    <div class="main-container"></div>
+    <div class="main-container">
+      <ul>
+        <li class="book-card">no image avaiable</li>
+        <li class="book-card">no image avaiable</li>
+        <li class="book-card">no image avaiable</li>
+        <li class="book-card">no image avaiable</li>
+        <li class="book-card">no image avaiable</li>
+        <li class="book-card">no image avaiable</li>
+        <li class="book-card">no image avaiable</li>
+        <li class="book-card">no image avaiable</li>
+        <li class="book-card">no image avaiable</li>
+        <li class="book-card">no image avaiable</li>
+        <li class="book-card">no image avaiable</li>
+        <li class="book-card">no image avaiable</li>
+        <li class="book-card">no image avaiable</li>
+        <li class="book-card">no image avaiable</li>
+        <li class="book-card">no image avaiable</li>
+      </ul>
+    </div>
+    <footer>
+      <p>Copyright DafrDev - 2022</p>
+    </footer>
   </body>
 </html>
