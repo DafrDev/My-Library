@@ -6,16 +6,23 @@ let arrOfBooks = [];
 
 formAddBook.addEventListener("submit", e => {
   e.preventDefault();
+
   const data = new FormData(formAddBook);
   const newBookObj = Object.fromEntries(data);
+
+  if (newBookObj.read === "on") {
+    newBookObj.read = true;
+  } else {
+    newBookObj.read = false;
+  }
 
   checkIfBookAlreadyExists(newBookObj);
 });
 
 formHeader.addEventListener("click", e => {
   const selectedValue = e.target.value;
-
-  orderBy(selectedValue);
+  const isReadChecked = e.target.checked;
+  orderBy(selectedValue, isReadChecked);
 });
 
 function createBook(book) {
@@ -75,17 +82,17 @@ function checkIfBookAlreadyExists(book) {
   }
 }
 
-function orderBy(selectedValue) {
+function orderBy(selectedValue, isReadChecked) {
   if (selectedValue === "A-Z") {
     arrOfBooks.sort((a, b) => a.name.localeCompare(b.name));
-  }
-  if (selectedValue === "Author") {
+  } else if (selectedValue === "Author") {
     arrOfBooks.sort((a, b) => a.author.localeCompare(b.author));
-  }
-  if (selectedValue === "Pages") {
+  } else if (selectedValue === "Pages") {
     arrOfBooks.sort((a, b) => a.pages - b.pages);
-  }
-  if (selectedValue === "Read") {
+  } else if (isReadChecked) {
+    arrOfBooks.sort((a, b) => b.read - a.read);
+  } else {
+    arrOfBooks.sort((a, b) => a.read - b.read);
   }
 
   saveArrToLocalStorage(arrOfBooks);
