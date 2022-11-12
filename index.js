@@ -8,43 +8,67 @@ formAddBook.addEventListener("submit", e => {
   const data = new FormData(formAddBook);
   const newBookObj = Object.fromEntries(data);
 
-  arrOfBooks.push(newBookObj);
-  saveArrLocalStorage(arrOfBooks);
-  createBook(newBookObj);
+  checkIfBookAlreadyExists(newBookObj);
 });
 
 function createBook(book) {
+  arrOfBooks.push(book);
+  saveArrToLocalStorage(arrOfBooks);
+
   const li = document.createElement("li");
   cardBookParent.appendChild(li).classList.add("book-card");
 
   li.innerHTML = `
     <a href='#'>
       <p>${book.name}</p>
-      <p>${book.author}</p>
+      <p>${book.author}</p> 
       <p>${book.pages}</p>
       <p>${book.read}</p>
     </a>
   `;
 }
 
-function saveArrLocalStorage(arrOfBooks) {
+function saveArrToLocalStorage(arrOfBooks) {
   localStorage.setItem("arrOfBooks", JSON.stringify(arrOfBooks));
 }
 
-function getArrLocalStorage() {
+function getArrFromLocalStorage() {
   const storageBooksArr = JSON.parse(localStorage.getItem("arrOfBooks"));
 
   if (storageBooksArr) {
+    console.log("local storage have objects");
+
     storageBooksArr.forEach(book => {
-      arrOfBooks.push(book);
-      createBook(book);
+      checkIfBookAlreadyExists(book);
     });
   } else {
-    const h2 = document.createElement("h2");
-    cardBookParent.appendChild(h2).classList.add("noBooks");
-
-    h2.innerHTML = "<h2>No Books Added</h2>";
+    console.log("local storage is empty");
   }
 }
 
-getArrLocalStorage();
+function checkIfBookAlreadyExists(book) {
+  let checkName = false;
+  let checkAuthor = false;
+
+  if (arrOfBooks.length > 0) {
+    for (let i = 0; i < arrOfBooks.length; i++) {
+      checkName = arrOfBooks[i].name === book.name;
+      checkAuthor = arrOfBooks[i].author === book.author;
+
+      if (checkName && checkAuthor) {
+        console.log(
+          "This Book of the same Author already exists in the Library !"
+        );
+        break;
+      }
+    }
+
+    if ((checkName && !checkAuthor) || (!checkName && checkAuthor)) {
+      createBook(book);
+    }
+  } else {
+    createBook(book);
+  }
+}
+
+getArrFromLocalStorage();
