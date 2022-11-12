@@ -186,7 +186,8 @@ input[type="number"] {
   justify-items: center;
 
   background-color: var(--second-color);
-  padding: 40px 40px 40px 40px;
+  padding: 40px 40px 0px 40px;
+  height: 95%;
 
   box-shadow: 3px 4px 17px 0px rgba(0, 0, 0, 0.75) inset;
 }

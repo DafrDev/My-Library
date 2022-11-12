@@ -15,7 +15,7 @@
         <h1>My Library</h1>
       </div>
 
-      <form action="">
+      <form action="" id="formAddBook">
         <input type="text" name="name" id="bookName" placeholder="Name" />
         <label for="bookName"></label>
 
@@ -30,7 +30,7 @@
           <label for="bookRead">Finished reading it ?</label>
         </div>
 
-        <button type="submit">Add Book</button>
+        <button type="submit" id="submitBtn">Add Book</button>
       </form>
     </div>
     <div class="header-container">
@@ -65,26 +65,11 @@
       </form>
     </div>
     <div class="main-container">
-      <ul>
-        <li class="book-card">no image avaiable</li>
-        <li class="book-card">no image avaiable</li>
-        <li class="book-card">no image avaiable</li>
-        <li class="book-card">no image avaiable</li>
-        <li class="book-card">no image avaiable</li>
-        <li class="book-card">no image avaiable</li>
-        <li class="book-card">no image avaiable</li>
-        <li class="book-card">no image avaiable</li>
-        <li class="book-card">no image avaiable</li>
-        <li class="book-card">no image avaiable</li>
-        <li class="book-card">no image avaiable</li>
-        <li class="book-card">no image avaiable</li>
-        <li class="book-card">no image avaiable</li>
-        <li class="book-card">no image avaiable</li>
-        <li class="book-card">no image avaiable</li>
-      </ul>
+      <ul id="card-book-parent"></ul>
     </div>
     <footer>
       <p>Copyright DafrDev - 2022</p>
     </footer>
   </body>
+  <script src="./index.js"></script>
 </html>
