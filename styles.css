@@ -227,6 +227,65 @@ input[type="number"] {
   -moz-box-shadow: 3px 4px 17px 0px rgba(0, 0, 0, 0.75);
 }
 
+.main-container ul a {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  text-decoration: none;
+  color: #222831;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.main-container .checked-container {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  margin-left: 142px;
+  margin-top: 241px;
+  cursor: pointer;
+  background-color: var(--first-color);
+  clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+  border-bottom-right-radius: 10px;
+}
+
+.main-container .checked-icon {
+  width: 30px;
+  height: 30px;
+  margin-left: 26px;
+  margin-bottom: -23px;
+  filter: invert(22%) sepia(2%) saturate(3408%) hue-rotate(178deg)
+    brightness(90%) contrast(86%);
+}
+
+.main-container .checked-container .read {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  margin-left: 142px;
+  margin-top: 241px;
+  cursor: pointer;
+  background-color: var(--hover-color);
+  clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+  border-bottom-right-radius: 10px;
+}
+
+.main-container .checked-icon .read {
+  width: 30px;
+  height: 30px;
+  margin-left: 26px;
+  margin-bottom: -23px;
+  filter: invert(100%) sepia(24%) saturate(9%) hue-rotate(48deg)
+    brightness(113%) contrast(90%);
+}
+
 /*///////////////////
 /////// FOOTER //////
 ///////////////////*/

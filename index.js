@@ -37,7 +37,9 @@ function createBook(book) {
       <p>${book.name}</p>
       <p>${book.author}</p> 
       <p>${book.pages}</p>
-      <p>${book.read}</p>
+    </a>
+    <a class='checked-container'>
+      <img class="checked-icon" src="./icons/check.svg" alt="read icon"/>
     </a>
   `;
 }
