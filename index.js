@@ -1,5 +1,6 @@
 const formAddBook = document.querySelector("#formAddBook");
 const cardBookParent = document.querySelector("#card-book-parent");
+const formHeader = document.querySelector("#formHeader");
 
 const arrOfBooks = [];
 
@@ -9,6 +10,12 @@ formAddBook.addEventListener("submit", e => {
   const newBookObj = Object.fromEntries(data);
 
   checkIfBookAlreadyExists(newBookObj);
+});
+
+formHeader.addEventListener("click", e => {
+  const selectedValue = e.target.value;
+
+  orderBy(selectedValue);
 });
 
 function createBook(book) {
@@ -34,15 +41,10 @@ function saveArrToLocalStorage(arrOfBooks) {
 
 function getArrFromLocalStorage() {
   const storageBooksArr = JSON.parse(localStorage.getItem("arrOfBooks"));
-
   if (storageBooksArr) {
-    console.log("local storage have objects");
-
     storageBooksArr.forEach(book => {
       checkIfBookAlreadyExists(book);
     });
-  } else {
-    console.log("local storage is empty");
   }
 }
 
@@ -69,6 +71,25 @@ function checkIfBookAlreadyExists(book) {
   } else {
     createBook(book);
   }
+}
+
+function orderBy(selectedValue) {
+  if (selectedValue === "A-Z") {
+    arrOfBooks.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (selectedValue === "Author") {
+    arrOfBooks.sort((a, b) => a.author.localeCompare(b.author));
+  } else if (selectedValue === "Pages") {
+    arrOfBooks.sort((a, b) => a.pages - b.pages);
+  } else if (selectedValue === "Read") {
+  }
+
+  saveArrToLocalStorage(arrOfBooks);
+  clearParentCardList();
+  arrOfBooks.forEach(book => createBook(book));
+}
+
+function clearParentCardList() {
+  cardBookParent.innerHTML = "";
 }
 
 getArrFromLocalStorage();
