@@ -2,7 +2,7 @@ const formAddBook = document.querySelector("#formAddBook");
 const cardBookParent = document.querySelector("#card-book-parent");
 const formHeader = document.querySelector("#formHeader");
 
-const arrOfBooks = [];
+let arrOfBooks = [];
 
 formAddBook.addEventListener("submit", e => {
   e.preventDefault();
@@ -41,11 +41,10 @@ function saveArrToLocalStorage(arrOfBooks) {
 
 function getArrFromLocalStorage() {
   const storageBooksArr = JSON.parse(localStorage.getItem("arrOfBooks"));
-  if (storageBooksArr) {
-    storageBooksArr.forEach(book => {
-      checkIfBookAlreadyExists(book);
-    });
-  }
+
+  storageBooksArr.forEach(book => {
+    checkIfBookAlreadyExists(book);
+  });
 }
 
 function checkIfBookAlreadyExists(book) {
@@ -56,7 +55,6 @@ function checkIfBookAlreadyExists(book) {
     for (let i = 0; i < arrOfBooks.length; i++) {
       checkName = arrOfBooks[i].name === book.name;
       checkAuthor = arrOfBooks[i].author === book.author;
-
       if (checkName && checkAuthor) {
         console.log(
           "This Book of the same Author already exists in the Library !"
@@ -65,7 +63,11 @@ function checkIfBookAlreadyExists(book) {
       }
     }
 
-    if ((checkName && !checkAuthor) || (!checkName && checkAuthor)) {
+    if (
+      (checkName && !checkAuthor) ||
+      (!checkName && checkAuthor) ||
+      (!checkName && !checkAuthor)
+    ) {
       createBook(book);
     }
   } else {
@@ -76,16 +78,20 @@ function checkIfBookAlreadyExists(book) {
 function orderBy(selectedValue) {
   if (selectedValue === "A-Z") {
     arrOfBooks.sort((a, b) => a.name.localeCompare(b.name));
-  } else if (selectedValue === "Author") {
+  }
+  if (selectedValue === "Author") {
     arrOfBooks.sort((a, b) => a.author.localeCompare(b.author));
-  } else if (selectedValue === "Pages") {
+  }
+  if (selectedValue === "Pages") {
     arrOfBooks.sort((a, b) => a.pages - b.pages);
-  } else if (selectedValue === "Read") {
+  }
+  if (selectedValue === "Read") {
   }
 
   saveArrToLocalStorage(arrOfBooks);
+  arrOfBooks.splice(0, arrOfBooks.length);
   clearParentCardList();
-  arrOfBooks.forEach(book => createBook(book));
+  getArrFromLocalStorage();
 }
 
 function clearParentCardList() {
