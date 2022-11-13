@@ -175,6 +175,7 @@ input[type="number"] {
 }
 
 .main-container ul {
+  height: 100%;
   grid-column: 2 / 3;
   grid-row: 2 / 3;
 
@@ -186,8 +187,7 @@ input[type="number"] {
   justify-items: center;
 
   background-color: var(--second-color);
-  padding: 40px 40px 0px 40px;
-  height: 95%;
+  padding: 40px;
 
   box-shadow: 3px 4px 17px 0px rgba(0, 0, 0, 0.75) inset;
 }
@@ -212,6 +212,7 @@ input[type="number"] {
 
 .book-card {
   background-color: var(--fourth-color);
+  position: relative;
 
   width: 200px;
   height: 300px;
@@ -228,7 +229,6 @@ input[type="number"] {
 }
 
 .main-container ul a {
-  position: relative;
   width: 100%;
   height: 100%;
 
@@ -248,8 +248,8 @@ input[type="number"] {
   position: absolute;
   width: 60px;
   height: 60px;
-  margin-left: 142px;
-  margin-top: 241px;
+  bottom: -0.5px;
+  right: -0.5px;
   cursor: pointer;
   background-color: var(--first-color);
   clip-path: polygon(100% 0, 0% 100%, 100% 100%);
@@ -265,25 +265,25 @@ input[type="number"] {
     brightness(90%) contrast(86%);
 }
 
-.main-container .checked-container .read {
+.main-container .checked-container-read {
   position: absolute;
   width: 60px;
   height: 60px;
-  margin-left: 142px;
-  margin-top: 241px;
+  bottom: -0.5px;
+  right: -0.5px;
   cursor: pointer;
   background-color: var(--hover-color);
   clip-path: polygon(100% 0, 0% 100%, 100% 100%);
   border-bottom-right-radius: 10px;
 }
 
-.main-container .checked-icon .read {
+.main-container .checked-icon-read {
   width: 30px;
   height: 30px;
   margin-left: 26px;
   margin-bottom: -23px;
-  filter: invert(100%) sepia(24%) saturate(9%) hue-rotate(48deg)
-    brightness(113%) contrast(90%);
+  filter: brightness(0) saturate(100%) invert(56%) sepia(17%) saturate(5119%)
+    hue-rotate(5deg) brightness(101%) contrast(107%);
 }
 
 /*///////////////////

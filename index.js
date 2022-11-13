@@ -3,12 +3,16 @@ const cardBookParent = document.querySelector("#card-book-parent");
 const formHeader = document.querySelector("#formHeader");
 
 let arrOfBooks = [];
-
+let unRead = false;
+let id = 0;
+let targetId = 0;
 formAddBook.addEventListener("submit", e => {
   e.preventDefault();
 
   const data = new FormData(formAddBook);
   const newBookObj = Object.fromEntries(data);
+  console.log(newBookObj);
+  newBookObj.id = id++;
 
   if (newBookObj.read === "on") {
     newBookObj.read = true;
@@ -25,6 +29,22 @@ formHeader.addEventListener("click", e => {
   orderBy(selectedValue, isReadChecked);
 });
 
+document.addEventListener("click", e => {
+  targetId = parseInt(e.target.id);
+
+  for (let i = 0; i < arrOfBooks.length; i++) {
+    if (arrOfBooks[i].id === targetId) {
+      if (arrOfBooks[i].read) {
+        arrOfBooks[i].read = false;
+      } else {
+        arrOfBooks[i].read = true;
+      }
+    }
+
+    resetAndClear();
+  }
+});
+
 function createBook(book) {
   arrOfBooks.push(book);
   saveArrToLocalStorage(arrOfBooks);
@@ -32,14 +52,25 @@ function createBook(book) {
   const li = document.createElement("li");
   cardBookParent.appendChild(li).classList.add("book-card");
 
+  let changeStyleContainer;
+  let changeStyleIcon;
+
+  if (!book.read) {
+    changeStyleContainer = "checked-container";
+    changeStyleIcon = "checked-icon";
+  } else {
+    changeStyleContainer = "checked-container-read";
+    changeStyleIcon = "checked-icon-read";
+  }
+
   li.innerHTML = `
     <a href='#'>
       <p>${book.name}</p>
       <p>${book.author}</p> 
-      <p>${book.pages}</p>
+      <p>${book.pages} pages</p>
     </a>
-    <a class='checked-container'>
-      <img class="checked-icon" src="./icons/check.svg" alt="read icon"/>
+    <a class='${changeStyleContainer}' id='${book.id}'>
+      <img class="${changeStyleIcon}" src="./icons/check.svg" alt="read icon"/>
     </a>
   `;
 }
@@ -97,14 +128,18 @@ function orderBy(selectedValue, isReadChecked) {
     arrOfBooks.sort((a, b) => a.read - b.read);
   }
 
-  saveArrToLocalStorage(arrOfBooks);
-  arrOfBooks.splice(0, arrOfBooks.length);
-  clearParentCardList();
-  getArrFromLocalStorage();
+  resetAndClear();
 }
 
 function clearParentCardList() {
   cardBookParent.innerHTML = "";
+}
+
+function resetAndClear() {
+  saveArrToLocalStorage(arrOfBooks);
+  arrOfBooks.splice(0, arrOfBooks.length);
+  clearParentCardList();
+  getArrFromLocalStorage();
 }
 
 getArrFromLocalStorage();
