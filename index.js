@@ -69,9 +69,9 @@ function createBook(book) {
       <p>${book.author}</p> 
       <p>${book.pages} pages</p>
     </a>
-    <a class='${changeStyleContainer}' id='${book.id}'>
-      <img class="${changeStyleIcon}" src="./icons/check.svg" alt="read icon"/>
-    </a>
+    <div class='${changeStyleContainer}' >
+      <img class="${changeStyleIcon}" id='${book.id}' src="./icons/check.svg" alt="read icon"/>
+    </div>
   `;
 }
 

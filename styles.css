@@ -246,11 +246,13 @@ input[type="number"] {
 
 .main-container .checked-container {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 60px;
   height: 60px;
   bottom: -0.5px;
   right: -0.5px;
-  cursor: pointer;
   background-color: var(--first-color);
   clip-path: polygon(100% 0, 0% 100%, 100% 100%);
   border-bottom-right-radius: 10px;
@@ -261,17 +263,20 @@ input[type="number"] {
   height: 30px;
   margin-left: 26px;
   margin-bottom: -23px;
+  cursor: pointer;
   filter: invert(22%) sepia(2%) saturate(3408%) hue-rotate(178deg)
     brightness(90%) contrast(86%);
 }
 
 .main-container .checked-container-read {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 60px;
   height: 60px;
   bottom: -0.5px;
   right: -0.5px;
-  cursor: pointer;
   background-color: var(--hover-color);
   clip-path: polygon(100% 0, 0% 100%, 100% 100%);
   border-bottom-right-radius: 10px;
@@ -282,6 +287,7 @@ input[type="number"] {
   height: 30px;
   margin-left: 26px;
   margin-bottom: -23px;
+  cursor: pointer;
   filter: brightness(0) saturate(100%) invert(56%) sepia(17%) saturate(5119%)
     hue-rotate(5deg) brightness(101%) contrast(107%);
 }
