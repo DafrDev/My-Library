@@ -11,10 +11,8 @@ formAddBook.addEventListener("submit", e => {
 
   const data = new FormData(formAddBook);
   const newBookObj = Object.fromEntries(data);
-  console.log(newBookObj);
   newBookObj.id = `book${id++}`;
 
-  console.log(newBookObj.id);
   if (newBookObj.read === "on") {
     newBookObj.read = true;
   } else {
