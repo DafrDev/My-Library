@@ -12,8 +12,9 @@ formAddBook.addEventListener("submit", e => {
   const data = new FormData(formAddBook);
   const newBookObj = Object.fromEntries(data);
   console.log(newBookObj);
-  newBookObj.id = id++;
+  newBookObj.id = `book${id++}`;
 
+  console.log(newBookObj.id);
   if (newBookObj.read === "on") {
     newBookObj.read = true;
   } else {
@@ -30,19 +31,7 @@ formHeader.addEventListener("click", e => {
 });
 
 document.addEventListener("click", e => {
-  targetId = parseInt(e.target.id);
-
-  for (let i = 0; i < arrOfBooks.length; i++) {
-    if (arrOfBooks[i].id === targetId) {
-      if (arrOfBooks[i].read) {
-        arrOfBooks[i].read = false;
-      } else {
-        arrOfBooks[i].read = true;
-      }
-    }
-
-    resetAndClear();
-  }
+  selectItemByClassList(e);
 });
 
 function createBook(book) {
@@ -51,7 +40,6 @@ function createBook(book) {
 
   const li = document.createElement("li");
   cardBookParent.appendChild(li).classList.add("book-card");
-
   let changeStyleContainer;
   let changeStyleIcon;
 
@@ -65,12 +53,13 @@ function createBook(book) {
 
   li.innerHTML = `
     <a href='#'>
+      <img class="${book.id} delete" src="./icons/delete.svg" alt='icon delete' />
       <p>${book.name}</p>
       <p>${book.author}</p> 
       <p>${book.pages} pages</p>
     </a>
     <div class='${changeStyleContainer}' >
-      <img class="${changeStyleIcon}" id='${book.id}' src="./icons/check.svg" alt="read icon"/>
+      <img class="${book.id} ${changeStyleIcon} "  src="./icons/check.svg" alt="read icon"/>
     </div>
   `;
 }
@@ -82,9 +71,11 @@ function saveArrToLocalStorage(arrOfBooks) {
 function getArrFromLocalStorage() {
   const storageBooksArr = JSON.parse(localStorage.getItem("arrOfBooks"));
 
-  storageBooksArr.forEach(book => {
-    checkIfBookAlreadyExists(book);
-  });
+  if (storageBooksArr.length > 0) {
+    storageBooksArr.forEach(book => {
+      checkIfBookAlreadyExists(book);
+    });
+  }
 }
 
 function checkIfBookAlreadyExists(book) {
@@ -133,6 +124,47 @@ function orderBy(selectedValue, isReadChecked) {
 
 function clearParentCardList() {
   cardBookParent.innerHTML = "";
+}
+
+function selectItemByClassList(e) {
+  firstClassName = e.target.classList[0];
+  secondClassName = e.target.classList[1];
+
+  changeReadBool(firstClassName, secondClassName);
+  deleteObj(firstClassName, secondClassName);
+
+  resetAndClear();
+}
+
+function changeReadBool(firstClassName, secondClassName) {
+  for (let i = 0; i < arrOfBooks.length; i++) {
+    if (arrOfBooks[i].id === firstClassName) {
+      if (
+        secondClassName === "checked-icon" ||
+        secondClassName === "checked-icon-read"
+      ) {
+        if (arrOfBooks[i].read) {
+          arrOfBooks[i].read = false;
+        } else {
+          arrOfBooks[i].read = true;
+        }
+      }
+    }
+  }
+}
+
+function deleteObj(firstClassName, secondClassName) {
+  for (let i = 0; i < arrOfBooks.length; i++) {
+    if (arrOfBooks[i].id === firstClassName && secondClassName === "delete") {
+      const indexToDelete = arrOfBooks
+        .map(obj => obj.id)
+        .indexOf(arrOfBooks[i].id);
+
+      arrOfBooks.splice(indexToDelete, 1);
+    }
+
+    resetAndClear();
+  }
 }
 
 function resetAndClear() {
